@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Disney+</title>
+    <meta name="description" content="Plataforma do disney plus" />
+
+    <!-- FAVICON -->
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="./assets/icon-disney-plus.svg"
+    />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- *currently set to "Roboto". Feel free to change it to whatever you like* -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS STYLE LINK -->
+    <link rel="stylesheet" href="./styles/global.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <img src="./assets/logo.png" alt="logo disney-plus" />
+
+        <button type="button" class="menu__button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <main>
+        <section class="movie">
+          <div class="rating">
+            <img src="./assets/logo-imdb.png" alt="Logo IMDb" />
+            <strong>8.8</strong>
+          </div>
+
+          <span>2021 - Kids - Movie</span>
+
+          <h1>Luca</h1>
+
+          <p>
+            Luca and Alberto dream of a life of freedom, a life of adventure —
+            and, most of all, a life with a Vespa to ride.
+          </p>
+
+          <button>
+            <img src="./assets/icon-play.png" alt="Icon Play" />
+            Assista Agora
+          </button>
+        </section>
+
+        <aside class="movies">
+          <h2>Filmes</h2>
+
+          <ul>
+            <li>filme 1</li>
+            <li>filme 2</li>
+            <li>filme 3</li>
+          </ul>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>

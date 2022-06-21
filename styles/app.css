@@ -1,0 +1,23 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+      90.18deg,
+      rgb(13, 22, 46, 0.7) 23.21%,
+      rgba(13, 22, 46, 0.0001) 96.69%
+    ),
+    url("../assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 45px 130px 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
