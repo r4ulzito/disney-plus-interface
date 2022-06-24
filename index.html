@@ -27,18 +27,31 @@
   </head>
   <body>
     <div id="app">
+      <div class="app__image">
+        <img
+          loading="lazy"
+          src="https://image.tmdb.org/t/p/original/askg3SMvhqEl4OL52YuvdtY40Yb.jpg"
+          alt="imagem-do-filme-destaque"
+        />
+      </div>
       <header>
         <img src="./assets/logo.png" alt="logo disney-plus" />
 
-        <button type="button" class="menu__button">
+        <button type="button" class="button__menu" onclick="changeButtonMenu()">
           <span></span>
           <span></span>
           <span></span>
         </button>
+
+        <nav class="navigation">
+          <h2>Filmes</h2>
+
+          <ul id="movies"></ul>
+        </nav>
       </header>
 
       <main>
-        <section class="movie">
+        <section class="feature__movie">
           <div class="rating">
             <img src="./assets/logo-imdb.png" alt="Logo IMDb" />
             <!-- Rating IMDb -->
@@ -51,18 +64,19 @@
           <!-- Descrição Filme -->
           <p></p>
 
-          <button>
+          <button type="button">
             <img src="./assets/icon-play.png" alt="Icon Play" />
-            Assista Agora
+            Assistir Agora
           </button>
         </section>
 
-        <aside class="movies">
+        <!-- <aside class="movies">
           <h2>Filmes</h2>
+
           <div>
             <ul id="movies__list"></ul>
           </div>
-        </aside>
+        </aside> -->
       </main>
     </div>
 

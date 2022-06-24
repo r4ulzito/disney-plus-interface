@@ -5,27 +5,42 @@ header {
   margin-bottom: 64px;
 }
 
-.menu__button {
+.button__menu {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   row-gap: 10px;
   width: 46px;
   background: transparent;
+  z-index: 99;
 }
 
-.menu__button span {
+.button__menu span {
   width: 100%;
   height: 4px;
   border-radius: 4px;
   display: block;
   background: var(--primary);
+  transition: all 0.6s;
 }
 
-.menu__button span:last-child {
+.button__menu span:last-child {
   width: 50%;
 }
 
 header img {
   cursor: pointer;
+}
+
+.button__menu.active span:last-child {
+  width: 100%;
+  transform: rotate(45deg) translateY(-20px);
+}
+
+.button__menu.active span:first-child {
+  transform: rotate(-45deg) translateY(20px);
+}
+
+.button__menu.active span:nth-child(2) {
+  opacity: 0;
 }
