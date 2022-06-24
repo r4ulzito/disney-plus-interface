@@ -33,7 +33,12 @@
   line-height: 2rem;
   font-weight: 400;
   width: 100%;
-  max-width: 400px;
+  max-width: 540px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .movie button {

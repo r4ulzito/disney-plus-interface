@@ -25,3 +25,7 @@ header {
 .menu__button span:last-child {
   width: 50%;
 }
+
+header img {
+  cursor: pointer;
+}
