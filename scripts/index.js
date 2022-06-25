@@ -4,8 +4,9 @@ const BASE_URL_IMAGE = {
   original: `https://image.tmdb.org/t/p/original`,
   small: `https://image.tmdb.org/t/p/w500`,
 };
-const movies = [];
 
+const movies = [];
+let movieActive = "";
 const moviesElement = document.getElementById("movies");
 
 function getUrlMovie(movieId) {
@@ -36,11 +37,28 @@ function setMainMovie(movie) {
   appImage.setAttribute("src", movie.image.original);
 }
 
+function changeMovieActiveInList(newMovieActive) {
+  const movieActiveCurrent = document.getElementById(movieActive);
+  movieActiveCurrent.classList.remove("active-movie");
+
+  const movieActiveNew = document.getElementById(newMovieActive);
+  movieActiveNew.classList.add("active-movie");
+
+  movieActive = newMovieActive;
+}
+
 function changeMainMovie(movieId) {
+  changeMovieActiveInList(movieId);
+
   const movie = movies.find((movie) => movie.id === movieId);
 
-  setMainMovie(movie);
-  changeButtonMenu();
+  if (movie?.id) {
+    setMainMovie(movie);
+    changeButtonMenu();
+  } else {
+    console.log(movies);
+    console.log("Não foi possivel encontrar o filme com o id: " + movieId);
+  }
 }
 
 function createButtonMovie(movieId) {
@@ -68,6 +86,7 @@ function createImageMovie(movieImage, movieTitle) {
 function addMovieInList(movie) {
   const movieElement = document.createElement("li");
   movieElement.classList.add("movie");
+  movieElement.setAttribute("id", movie.id);
 
   const genre = `<span>${movie.genre}</span>`;
   const title = `<strong>${movie.title}</strong>`;
@@ -79,43 +98,81 @@ function addMovieInList(movie) {
   moviesElement.appendChild(movieElement);
 }
 
+async function getMovieData(movieId) {
+  const isMovieInList = movies.findIndex((movie) => movie.id === movieId);
+
+  // console.log("isMovieInList", isMovieInList);
+
+  if (isMovieInList === -1) {
+    try {
+      let data = await fetch(getUrlMovie(movieId));
+      data = await data.json();
+
+      const movieData = {
+        id: movieId,
+        title: data.title,
+        overview: data.overview,
+        vote_average: data.vote_average,
+        genre: data.genres[0].name,
+        release: data.release_date.split("-")[0],
+        image: {
+          original: BASE_URL_IMAGE.original.concat(data.backdrop_path),
+          small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
+        },
+      };
+
+      movies.push(movieData);
+
+      return movieData;
+    } catch (error) {
+      console.log("Mensagem de ERRO: " + error.message);
+    }
+  }
+
+  return null;
+}
+
 function loadMovies() {
-  const LIST_MOVIES = [
-    "tt2380307",
-    "tt12801262",
-    "tt2096673",
-    "tt5109280",
-    "tt7146812",
-    "tt2948372",
-    "tt2953050",
-    "tt3521164",
-  ];
-  LIST_MOVIES.map((movie, index) => {
-    fetch(getUrlMovie(movie))
-      .then((response) => response.json())
-      .then((data) => {
-        const movieData = {
-          id: movie,
-          title: data.title,
-          overview: data.overview,
-          vote_average: data.vote_average,
-          genre: data.genres[0].name,
-          release: data.release_date.split("-")[0],
-          image: {
-            original: BASE_URL_IMAGE.original.concat(data.backdrop_path),
-            small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
-          },
-        };
+  const LIST_MOVIES = ["tt2380307", "tt12801262"];
 
-        movies.push(movieData);
+  LIST_MOVIES.map(async (movie, index) => {
+    const movieData = await getMovieData(movie);
 
-        if (index === 0) {
-          setMainMovie(movieData);
-        }
+    addMovieInList(movieData);
 
-        addMovieInList(movieData);
-      });
+    if (index === 0) {
+      setMainMovie(movieData);
+      movieActive = movieData.id;
+      const movieActiveNew = document.getElementById(movieActive);
+      movieActiveNew.classList.add("active-movie");
+
+      movieActive = movieData.id;
+    }
   });
 }
+
+function formattedMovieId(movieId) {
+  if (movieId.includes("https://www.imdb.com/title/")) {
+    const id = movieId.split("/")[4];
+    return id;
+  }
+
+  return movieId;
+}
+
+const buttonAddMovie = document.getElementById("add__movie");
+
+buttonAddMovie.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const newMovieId = formattedMovieId(event.target["movie"].value);
+  const newMovie = await getMovieData(newMovieId);
+
+  if (newMovie?.id) {
+    addMovieInList(newMovie);
+  }
+
+  event.target["movie"].value = "";
+});
 
 loadMovies();

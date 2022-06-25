@@ -3,6 +3,7 @@
 @import url("./movie.css");
 @import url("./movies.css");
 @import url("./navigation.css");
+@import url("./form.css");
 
 * {
   margin: 0;
