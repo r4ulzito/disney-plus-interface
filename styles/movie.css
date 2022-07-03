@@ -60,3 +60,47 @@
 .feature__movie button:hover {
   filter: brightness(0.85);
 }
+
+@media screen and (max-width: 768px) {
+  .feature__movie h1 {
+    font-size: 2.5rem;
+    line-height: 3.25rem;
+  }
+
+  .feature__movie button {
+    height: 60px;
+    width: 240px;
+  }
+
+  .feature__movie button img {
+    width: 16px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .feature__movie h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .feature__movie {
+    row-gap: 8px;
+  }
+
+  .feature__movie p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .feature__movie button {
+    height: 48px;
+    width: 175px;
+    font-size: 0.875rem;
+    padding: 0 32px;
+  }
+
+  .feature__movie button img {
+    width: 14px;
+  }
+}

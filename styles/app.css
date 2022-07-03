@@ -37,3 +37,29 @@ main {
   width: 100%;
   height: 100%;
 }
+
+@media screen and (max-width: 1080px) {
+  #app {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #app {
+    padding: 24px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    padding: 16px;
+  }
+
+  .app__image::after {
+    background: linear-gradient(
+      90.18deg,
+      rgba(13, 22, 46, 0.7) 30%,
+      rgba(13, 22, 46, 0.2) 96.69%
+    );
+  }
+}

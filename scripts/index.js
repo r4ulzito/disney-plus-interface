@@ -101,8 +101,6 @@ function addMovieInList(movie) {
 async function getMovieData(movieId) {
   const isMovieInList = movies.findIndex((movie) => movie.id === movieId);
 
-  // console.log("isMovieInList", isMovieInList);
-
   if (isMovieInList === -1) {
     try {
       let data = await fetch(getUrlMovie(movieId));
@@ -133,7 +131,14 @@ async function getMovieData(movieId) {
 }
 
 function loadMovies() {
-  const LIST_MOVIES = ["tt2380307", "tt12801262"];
+  const LIST_MOVIES = [
+    "tt2380307",
+    "tt12801262",
+    "tt1211837",
+    "tt4154796",
+    "tt1979376",
+    "tt2527338",
+  ];
 
   LIST_MOVIES.map(async (movie, index) => {
     const movieData = await getMovieData(movie);
