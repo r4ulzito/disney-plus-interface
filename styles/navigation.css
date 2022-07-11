@@ -20,6 +20,19 @@
   font-weight: 700;
 }
 
+.navigation::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.navigation::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.navigation::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 40px;
+}
+
 @media screen and (max-height: 750px) {
   .navigation {
     padding: 70px 40px 40px;

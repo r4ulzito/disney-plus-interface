@@ -4,8 +4,15 @@ const BASE_URL_IMAGE = {
   original: `https://image.tmdb.org/t/p/original`,
   small: `https://image.tmdb.org/t/p/w500`,
 };
+const LIST_DEFAULT_MOVIES = [
+  "tt4154796",
+  "tt1211837",
+  "tt1979376",
+  "tt2527338",
+];
 
 const movies = [];
+
 let movieActive = "";
 const moviesElement = document.getElementById("movies");
 
@@ -136,24 +143,6 @@ async function getMovieData(movieId) {
   return null;
 }
 
-function loadMovies() {
-  const LIST_MOVIES = ["tt4154796", "tt1211837", "tt1979376", "tt2527338"];
-
-  LIST_MOVIES.map(async (movie, index) => {
-    const movieData = await getMovieData(movie);
-    addMovieInList(movieData);
-
-    if (index === 0) {
-      setMainMovie(movieData);
-      movieActive = movieData.id;
-      const movieActiveNew = document.getElementById(movieActive);
-      movieActiveNew.classList.add("active-movie");
-
-      movieActive = movieData.id;
-    }
-  });
-}
-
 function formattedMovieId(movieId) {
   if (movieId.includes("https://www.imdb.com/title/")) {
     const id = movieId.split("/")[4];
@@ -177,5 +166,21 @@ buttonAddMovie.addEventListener("submit", async function (event) {
 
   event.target["movie"].value = "";
 });
+
+function loadMovies() {
+  LIST_DEFAULT_MOVIES.map(async (movie, index) => {
+    const movieData = await getMovieData(movie);
+    addMovieInList(movieData);
+
+    if (index === 0) {
+      setMainMovie(movieData);
+      movieActive = movieData.id;
+      const movieActiveNew = document.getElementById(movieActive);
+      movieActiveNew.classList.add("active-movie");
+
+      movieActive = movieData.id;
+    }
+  });
+}
 
 loadMovies();
