@@ -41,7 +41,7 @@
   -webkit-box-orient: vertical;
 }
 
-.feature__movie button {
+.feature__movie .button {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,11 +53,11 @@
   font-weight: 500;
   padding: 0 42px;
   margin-top: 20px;
-
+  cursor: pointer;
   transition: filter 0.6s;
 }
 
-.feature__movie button:hover {
+.feature__movie .button:hover {
   filter: brightness(0.85);
 }
 
@@ -67,12 +67,12 @@
     line-height: 3.25rem;
   }
 
-  .feature__movie button {
+  .feature__movie .button {
     height: 60px;
     width: 240px;
   }
 
-  .feature__movie button img {
+  .feature__movie .button img {
     width: 16px;
     height: auto;
   }
@@ -93,14 +93,14 @@
     line-height: 1.5rem;
   }
 
-  .feature__movie button {
+  .feature__movie .button {
     height: 48px;
     width: 175px;
     font-size: 0.875rem;
     padding: 0 32px;
   }
 
-  .feature__movie button img {
+  .feature__movie .button img {
     width: 14px;
   }
 }

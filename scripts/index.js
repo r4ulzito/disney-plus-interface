@@ -28,6 +28,7 @@ function setMainMovie(movie) {
   const description = document.querySelector(".feature__movie p");
   const info = document.querySelector(".feature__movie span");
   const rating = document.querySelector(".rating strong");
+  const watchNowLink = document.querySelector(".button");
 
   title.innerHTML = movie.title;
   description.innerHTML = movie.overview;
@@ -35,6 +36,11 @@ function setMainMovie(movie) {
   info.innerHTML = `${movie.release} - ${movie.genre} - Filme`;
 
   appImage.setAttribute("src", movie.image.original);
+
+  if (movie.homePage != "") {
+    watchNowLink.setAttribute("target", "_blank");
+    watchNowLink.setAttribute("href", movie.homePage);
+  }
 }
 
 function changeMovieActiveInList(newMovieActive) {
@@ -105,7 +111,6 @@ async function getMovieData(movieId) {
     try {
       let data = await fetch(getUrlMovie(movieId));
       data = await data.json();
-
       const movieData = {
         id: movieId,
         title: data.title,
@@ -113,6 +118,7 @@ async function getMovieData(movieId) {
         vote_average: data.vote_average,
         genre: data.genres[0].name,
         release: data.release_date.split("-")[0],
+        homePage: data.homepage,
         image: {
           original: BASE_URL_IMAGE.original.concat(data.backdrop_path),
           small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
@@ -131,18 +137,10 @@ async function getMovieData(movieId) {
 }
 
 function loadMovies() {
-  const LIST_MOVIES = [
-    "tt2380307",
-    "tt12801262",
-    "tt1211837",
-    "tt4154796",
-    "tt1979376",
-    "tt2527338",
-  ];
+  const LIST_MOVIES = ["tt4154796", "tt1211837", "tt1979376", "tt2527338"];
 
   LIST_MOVIES.map(async (movie, index) => {
     const movieData = await getMovieData(movie);
-
     addMovieInList(movieData);
 
     if (index === 0) {
