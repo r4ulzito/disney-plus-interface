@@ -4,11 +4,12 @@ const BASE_URL_IMAGE = {
   original: `https://image.tmdb.org/t/p/original`,
   small: `https://image.tmdb.org/t/p/w500`,
 };
+
 const LIST_DEFAULT_MOVIES = [
   "tt4154796",
-  "tt1211837",
-  "tt1979376",
   "tt2527338",
+  "tt2250912",
+  "tt2380307",
 ];
 
 const movies = [];
@@ -44,7 +45,11 @@ function setMainMovie(movie) {
 
   appImage.setAttribute("src", movie.image.original);
 
-  if (movie.homePage != "") {
+  if (movie.homePage === "") {
+    console.log("Filme sem HOMEPAGE");
+    watchNowLink.setAttribute("target", "");
+    watchNowLink.setAttribute("href", "#");
+  } else {
     watchNowLink.setAttribute("target", "_blank");
     watchNowLink.setAttribute("href", movie.homePage);
   }
@@ -151,6 +156,12 @@ function formattedMovieId(movieId) {
 
   return movieId;
 }
+//Função que atualiza o localStorage
+function updateLocalStorage(newMovieID) {
+  const localFilms = JSON.parse(localStorage.getItem("localList"));
+  localFilms.push(newMovieID);
+  localStorage.setItem("localList", JSON.stringify(localFilms));
+}
 
 const buttonAddMovie = document.getElementById("add__movie");
 
@@ -164,11 +175,13 @@ buttonAddMovie.addEventListener("submit", async function (event) {
     addMovieInList(newMovie);
   }
 
+  updateLocalStorage(newMovie["id"]);
+
   event.target["movie"].value = "";
 });
 
-function loadMovies() {
-  LIST_DEFAULT_MOVIES.map(async (movie, index) => {
+function loadMoviesList(movie_list) {
+  movie_list.map(async (movie, index) => {
     const movieData = await getMovieData(movie);
     addMovieInList(movieData);
 
@@ -181,6 +194,16 @@ function loadMovies() {
       movieActive = movieData.id;
     }
   });
+}
+
+function loadMovies() {
+  if (localStorage.length === 0) {
+    loadMoviesList(LIST_DEFAULT_MOVIES);
+    localStorage.setItem("localList", JSON.stringify(LIST_DEFAULT_MOVIES));
+  } else {
+    let localList = JSON.parse(localStorage.getItem("localList"));
+    loadMoviesList(localList);
+  }
 }
 
 loadMovies();
