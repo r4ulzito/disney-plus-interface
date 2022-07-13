@@ -5,12 +5,7 @@ const BASE_URL_IMAGE = {
   small: `https://image.tmdb.org/t/p/w500`,
 };
 
-const LIST_DEFAULT_MOVIES = [
-  "tt4154796",
-  "tt2527338",
-  "tt2250912",
-  "tt2380307",
-];
+const LIST_DEFAULT_MOVIES = ["tt4154796", "tt2527338"];
 
 const movies = [];
 
@@ -46,7 +41,6 @@ function setMainMovie(movie) {
   appImage.setAttribute("src", movie.image.original);
 
   if (movie.homePage === "") {
-    console.log("Filme sem HOMEPAGE");
     watchNowLink.setAttribute("target", "");
     watchNowLink.setAttribute("href", "#");
   } else {
