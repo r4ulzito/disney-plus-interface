@@ -44,10 +44,17 @@
           <h2>Filmes</h2>
 
           <form class="form" id="add__movie">
-            <input type="text" placeholder="Adicione seu filme" name="movie" />
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Adicione seu filme"
+              name="movie"
+            />
             <button type="submit">+</button>
           </form>
-
+          <p class="add__movie-info">
+            <a class="add__movie-info-link">Como adicionar um filme?</a>
+          </p>
           <ul id="movies"></ul>
         </nav>
       </header>
@@ -74,6 +81,46 @@
           </a>
         </section>
       </main>
+
+      <div id="modal__info-container" class="modal__container">
+        <div class="modal">
+          <button class="close__button">
+            <span class="close__button-bar"></span>
+            <span class="close__button-bar"></span>
+          </button>
+          <div class="passos__container">
+            <div class="passo-1">
+              <h3 class="passo-title">PASSO 1:</h3>
+              <p class="passo-description">
+                Acesse o site
+                <a href="https://www.imdb.com/?ref_=nv_home" target="_blank"
+                  >www.imdb.com</a
+                >
+              </p>
+            </div>
+            <div class="passo-2">
+              <h3 class="passo-title">PASSO 2:</h3>
+              <p class="passo-description">
+                Encontre o filme desejado e copie a URL da sua página
+              </p>
+              <img src="./assets/passo-2-image.png" alt="imagem passo 2" />
+            </div>
+            <div class="passo-3">
+              <h3 class="passo-title">PASSO 3:</h3>
+              <p class="passo-description">
+                Cole a URL no campo "Adicione seu filme" e clique no botão
+                adicionar
+              </p>
+            </div>
+          </div>
+
+          <div class="modal__footer">
+            <h3 class="modal__footer-title">
+              Pronto! Seu filme foi adicionado!
+            </h3>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="./scripts/index.js"></script>

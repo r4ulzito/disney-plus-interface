@@ -12,8 +12,16 @@ const movies = [];
 let movieActive = "";
 const moviesElement = document.getElementById("movies");
 
+const buttonAddMovie = document.getElementById("add__movie");
+const inputID = document.querySelector(".form__input");
+
 function getUrlMovie(movieId) {
   return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+}
+
+function resetFormPlaceholder() {
+  buttonAddMovie.classList.remove("error");
+  inputID.setAttribute("placeholder", "Adicione seu filme");
 }
 
 function changeButtonMenu() {
@@ -22,6 +30,10 @@ function changeButtonMenu() {
 
   button.classList.toggle("active");
   navigation.classList.toggle("active");
+
+  if (button.classList.contains("active")) {
+    resetFormPlaceholder();
+  }
 }
 
 //Inicializa os dados do filme principal
@@ -67,16 +79,27 @@ function changeMainMovie(movieId) {
   if (movie?.id) {
     setMainMovie(movie);
     changeButtonMenu();
+    resetFormPlaceholder();
   } else {
     console.log(movies);
     console.log("Não foi possivel encontrar o filme com o id: " + movieId);
   }
 }
 
-function createButtonMovie(movieId) {
+function createPlayButtonMovie(movieId) {
   const button = document.createElement("button");
+  button.classList.add("play__button");
   button.setAttribute("onclick", `changeMainMovie('${movieId}')`);
   button.innerHTML = `<img src="/assets/icon-play-button.png" alt="icon-play-button"/>`;
+
+  return button;
+}
+
+function createTrashButtonMovie(movieId) {
+  const button = document.createElement("button");
+  button.classList.add("trash__button");
+  button.setAttribute("onclick", `deleteMovieInList('${movieId}')`);
+  button.innerHTML = `<img src="/assets/icon-trash-button.png" alt="icon-trash-button"/>`;
 
   return button;
 }
@@ -104,7 +127,8 @@ function addMovieInList(movie) {
   const title = `<strong>${movie.title}</strong>`;
 
   movieElement.innerHTML = genre + title;
-  movieElement.appendChild(createButtonMovie(movie.id));
+  movieElement.appendChild(createPlayButtonMovie(movie.id));
+  movieElement.appendChild(createTrashButtonMovie(movie.id));
   movieElement.appendChild(createImageMovie(movie.image.small, movie.title));
 
   moviesElement.appendChild(movieElement);
@@ -117,6 +141,13 @@ async function getMovieData(movieId) {
     try {
       let data = await fetch(getUrlMovie(movieId));
       data = await data.json();
+
+      // console.log(data);
+
+      if (data.success === false) {
+        return true;
+      }
+
       const movieData = {
         id: movieId,
         title: data.title,
@@ -157,19 +188,27 @@ function updateLocalStorage(newMovieID) {
   localStorage.setItem("localList", JSON.stringify(localFilms));
 }
 
-const buttonAddMovie = document.getElementById("add__movie");
-
 buttonAddMovie.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const newMovieId = formattedMovieId(event.target["movie"].value);
   const newMovie = await getMovieData(newMovieId);
 
-  if (newMovie?.id) {
-    addMovieInList(newMovie);
-  }
+  // console.log(newMovie);
 
-  updateLocalStorage(newMovie["id"]);
+  if (typeof newMovie === "object" && newMovie?.id) {
+    addMovieInList(newMovie);
+    updateLocalStorage(newMovie["id"]);
+    resetFormPlaceholder();
+  } else if (newMovie === null) {
+    event.target["movie"].value = "";
+    inputID.setAttribute("placeholder", "Este filme já está na lista!");
+    buttonAddMovie.classList.add("error");
+  } else {
+    event.target["movie"].value = "";
+    inputID.setAttribute("placeholder", "ID inválido!");
+    buttonAddMovie.classList.add("error");
+  }
 
   event.target["movie"].value = "";
 });
@@ -199,5 +238,33 @@ function loadMovies() {
     loadMoviesList(localList);
   }
 }
+
+function deleteMovieInList(movieId) {
+  const movieIndex = movies.findIndex((movie) => movie.id === movieId);
+  const localFilms = JSON.parse(localStorage.getItem("localList"));
+  localFilms.splice(movieIndex, 1);
+  movies.splice(movieIndex, 1);
+  localStorage.setItem("localList", JSON.stringify(localFilms));
+  const movieElement = document.getElementById(`${movieId}`);
+  movieElement.parentNode.removeChild(movieElement);
+}
+
+function showModal(modalID) {
+  const modal = document.getElementById(modalID);
+  modal.classList.add("show-modal");
+
+  modal.addEventListener("click", (e) => {
+    if (e.target.id == modalID || e.target.className == "close__button-bar") {
+      modal.classList.remove("show-modal");
+    }
+    if (e.target.className == "close__button") {
+      modal.classList.remove("show-modal");
+    }
+  });
+}
+
+const infoLink = document.querySelector(".add__movie-info-link");
+
+infoLink.addEventListener("click", () => showModal("modal__info-container"));
 
 loadMovies();

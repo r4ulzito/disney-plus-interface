@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   list-style: none;
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 30px;
 }
 
 .movie {
@@ -39,9 +39,21 @@
   font-weight: 600;
 }
 
-.movie button {
+.movie .play__button {
   position: absolute;
-  inset: 0;
+  inset: 0px 0px 0px -60px;
+  margin: auto;
+  height: 36px;
+  width: 36px;
+  background: transparent;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s;
+}
+
+.movie .trash__button {
+  position: absolute;
+  inset: 0px -55px 0px 0px;
   margin: auto;
   height: 36px;
   width: 36px;

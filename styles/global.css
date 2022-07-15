@@ -4,6 +4,7 @@
 @import url("./movies.css");
 @import url("./navigation.css");
 @import url("./form.css");
+@import url("./modal.css");
 
 * {
   margin: 0;
