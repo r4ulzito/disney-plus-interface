@@ -10,6 +10,7 @@
   overflow: auto;
 }
 
+/* Classe que mostra o Navigation ativo */
 .navigation.active {
   right: 0;
 }

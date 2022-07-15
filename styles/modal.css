@@ -89,6 +89,7 @@
   font-size: 1.5rem;
 }
 
+/* Classe que Mostra o Modal */
 .modal__container.show-modal {
   display: flex;
 }
