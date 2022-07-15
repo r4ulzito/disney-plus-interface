@@ -4,7 +4,7 @@
 
 > 🔎 Descrição do projeto (1 a 3 linhas)
 
-🗔 Confira a aplicação: https://www.linkedin.com/in/raul-de-souza/ <br>
+🗔 Confira a aplicação: https://disney-plus-newinterface.netlify.app <br>
 
 ## :page_facing_up: Explicação
 
