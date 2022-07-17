@@ -1,6 +1,6 @@
 <h1 align="center">🎥 DISNEY+ RE-DESIGN INTERFACE</h1>
 
-<img src="" alt="Descrição da imagem">
+<img src="https://user-images.githubusercontent.com/97764322/179385119-0e60234b-6635-4510-bc24-22c1a244913d.gif" alt="Descrição da imagem">
 
 > Re-design de interface da plataforma de streaming Disney+, e algumas funções adicionais
 
