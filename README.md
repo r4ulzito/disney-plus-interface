@@ -8,7 +8,7 @@
 
 🗔 Confira a aplicação: https://disney-plus-newinterface.netlify.app <br>
 
-## :page_facing_up: Explicação
+## 📄 Explicação
 
 A aplicação contém a funcionalidade de lista de filmes, a partir da API The Movie Database, é possivel montar uma lista que mostra o ano de lançamento, sinopse e nota IMDb de seus filmes favoritos, podendo alterar a lista sempre que quiser, removendo e adicionando seus itens. Os filmes na lista são salvos na storage local do navegador, podendo assim fechar e abrir a aplicação sem perder seus dados salvos.
 
@@ -24,21 +24,21 @@ A aplicação contém a funcionalidade de lista de filmes, a partir da API The M
 
 ## 📔 Conhecimentos Utilizados
 
-✅ Uso semântico do HTML
-✅ Integração com a API do TMDB ao usar o `fetch`
-✅ Criação de elementos dinamicos com o uso do `createElement`
-✅ Estrutura de variavei globais no script
-✅ Uso de variáveis globais no `:root`
-✅ Menu interativo
-✅ Modal informativo
-✅ Melhorias na performace de carregamento
-✅ Adicionar favicon
-✅ Marcar o filme ativo
-✅ Evento para adicionar um filme
-✅ Evento para remover um filme
-✅ Responsividade da aplicação com `@media`
-✅ Verificação de inputs com alertas para valores inválidos
-✅ Uso de `@keyframes` para efeitos animação
+✅ Uso semântico do HTML <br>
+✅ Integração com a API do TMDB ao usar o `fetch` <br>
+✅ Criação de elementos dinamicos com o uso do `createElement`<br>
+✅ Estrutura de variavei globais no script <br>
+✅ Uso de variáveis globais no `:root` <br>
+✅ Menu interativo <br>
+✅ Modal informativo <br>
+✅ Melhorias na performace de carregamento <br>
+✅ Adicionar favicon <br>
+✅ Marcar o filme ativo <br>
+✅ Evento para adicionar um filme <br>
+✅ Evento para remover um filme <br>
+✅ Responsividade da aplicação com `@media` <br>
+✅ Verificação de inputs com alertas para valores inválidos <br>
+✅ Uso de `@keyframes` para efeitos animação <br>
 
 ## 🤝 Colaboradores
 
