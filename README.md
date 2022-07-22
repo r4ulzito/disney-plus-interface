@@ -38,7 +38,9 @@ A aplicação contém a funcionalidade de lista de filmes, a partir da API The M
 ✅ Evento para remover um filme <br>
 ✅ Responsividade da aplicação com `@media` <br>
 ✅ Verificação de inputs com alertas para valores inválidos <br>
-✅ Uso de `@keyframes` para efeitos animação <br>
+✅ Uso de `@keyframes` para efeitos animação <br><br>
+
+> Esse projeto teve como base o projeto desenvolvido pelo Leo Vargas em seu canal no youtube, não esqueçade conferir!
 
 ## 🤝 Colaboradores
 
