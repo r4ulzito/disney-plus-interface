@@ -41,7 +41,7 @@ A aplicação contém a funcionalidade de lista de filmes, a partir da API The M
 ✅ Verificação de inputs com alertas para valores inválidos \
 ✅ Uso de `@keyframes` para efeitos animação <br><br>
 
-> Esse projeto teve como base o projeto desenvolvido pelo Leo Vargas em seu canal no youtube, não esqueçade conferir!
+> Esse projeto teve como base o projeto desenvolvido pelo Leo Vargas em seu canal no youtube, não esqueça de conferir!
 
 ## 🤝 Colaboradores
 
