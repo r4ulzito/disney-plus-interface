@@ -162,8 +162,6 @@ async function getMovieData(movieId) {
         },
       };
 
-      console.log(movieData);
-
       movies.push(movieData);
 
       return movieData;
