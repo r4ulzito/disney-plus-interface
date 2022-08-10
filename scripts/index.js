@@ -152,7 +152,7 @@ async function getMovieData(movieId) {
         id: movieId,
         title: data.title,
         overview: data.overview,
-        vote_average: data.vote_average,
+        vote_average: data.vote_average.toFixed(1),
         genre: data.genres[0].name,
         release: data.release_date.split("-")[0],
         homePage: data.homepage,
@@ -161,6 +161,8 @@ async function getMovieData(movieId) {
           small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
         },
       };
+
+      console.log(movieData);
 
       movies.push(movieData);
 
